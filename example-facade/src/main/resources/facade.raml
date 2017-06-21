@@ -1,0 +1,54 @@
+#%RAML 1.0
+title: Facade API
+version: v1
+mediaType: application/json
+baseUri: hb://example-service
+
+types:
+#  Conditional:
+#    type: object
+#    properties:
+#      if?:
+#
+#  WithUri:
+#    type: object
+#    properties:
+#      uri:
+
+  TodoItem:
+    type: object
+    properties:
+      id: string
+      content: string
+
+  NewTodoItem:
+    type: object
+    properties:
+      content: string
+
+  TodoList:
+    type: object
+    properties:
+      title: string
+      items: TodoItem[]
+
+#annotationTypes:
+#  x-client-ip: nil | Conditional
+#  x-client-language: nil | Conditional
+#  deny: nil | Conditional
+#  rewrite: [WithUri, Conditional]
+
+/todo-list:
+  get:
+    responses:
+      200:
+        body:
+          type: TodoList
+
+  post:
+    body:
+      type: NewTodoItem
+
+/todo-list/{id}:
+  delete:
+    

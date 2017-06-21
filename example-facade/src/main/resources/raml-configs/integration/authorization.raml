@@ -1,0 +1,29 @@
+#%RAML 1.0
+title: Facade API
+version: v1
+mediaType: application/json
+baseUri: https://meta.inn.eu/revault
+
+types:
+  Conditional:
+    type: object
+    properties:
+      if?:
+
+annotationTypes:
+  authorize: nil | Conditional
+  deny: nil | Conditional
+
+/authentication-failed:
+
+/authorization-failed:
+  (authorize):
+    if: context.authUser.roles has "qa"
+  (deny):
+    if: "!context.isAuthorized"
+
+/resource:
+  (authorize):
+    if: context.authUser.roles has "admin"
+  (deny):
+    if: "!context.isAuthorized"
