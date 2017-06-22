@@ -48,9 +48,8 @@ lazy val `example-service` = project in file("example-service") enablePlugins Ra
       hyperbusZMQ,
       logback
     ),
-    ramlHyperbusSource := file("./example-facade/src/main/resources/facade.raml"),
-    ramlHyperbusPackageName := "com.hypertino.exampleservice.api",
-    ramlHyperbusSourceIsResource := false
+    ramlHyperbusSource := file("example-service.raml"),
+    ramlHyperbusPackageName := "com.hypertino.exampleservice.api"
 )
 
 lazy val `example-root` = project.in(file(".")) aggregate (

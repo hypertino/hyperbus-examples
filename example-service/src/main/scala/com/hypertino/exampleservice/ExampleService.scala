@@ -16,8 +16,9 @@ class ExampleService (console: Console, implicit val injector: Injector) extends
   implicit val scheduler = inject[Scheduler]
   val hyperbus = inject[Hyperbus]
 
-  val handlers = Set {
+  val handlers = Seq {
     hyperbus.commands[TodoListGet].subscribe { implicit command ⇒
+
       val result = TodoList("This is my todo list", List(
         TodoItem("1", "Make exercise"),
         TodoItem("2", "Buy milk")

@@ -2,53 +2,25 @@
 title: Facade API
 version: v1
 mediaType: application/json
-baseUri: hb://example-service
+baseUri: http://example
 
 types:
-#  Conditional:
-#    type: object
-#    properties:
-#      if?:
-#
-#  WithUri:
-#    type: object
-#    properties:
-#      uri:
-
-  TodoItem:
+  Conditional:
     type: object
     properties:
-      id: string
-      content: string
+      if?:
 
-  NewTodoItem:
+  WithUri:
     type: object
     properties:
-      content: string
+      uri:
 
-  TodoList:
-    type: object
-    properties:
-      title: string
-      items: TodoItem[]
-
-#annotationTypes:
+annotationTypes:
 #  x-client-ip: nil | Conditional
 #  x-client-language: nil | Conditional
 #  deny: nil | Conditional
-#  rewrite: [WithUri, Conditional]
+  rewrite: [WithUri, Conditional]
 
-/todo-list:
-  get:
-    responses:
-      200:
-        body:
-          type: TodoList
-
-  post:
-    body:
-      type: NewTodoItem
-
-/todo-list/{id}:
-  delete:
-    
+/my-todo-list:
+  (rewrite):
+    uri: hb://todo-service/todo-list
