@@ -22,7 +22,7 @@ types:
       title: string
       items: TodoItem[]
 
-/todo-list:
+/todo-list-items:
   get:
     responses:
       200:
@@ -33,7 +33,7 @@ types:
     body:
       type: NewTodoItem
 
-/todo-list/items/{id}:
+/todo-list-items/{id}:
   uriParameters:
     id: string
   delete:

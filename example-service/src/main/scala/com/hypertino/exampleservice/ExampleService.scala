@@ -24,14 +24,14 @@ class ExampleService (console: Console, implicit val injector: Injector) extends
   var counter = 2
 
   val handlers = Seq (
-    hyperbus.commands[TodoListGet].subscribe { implicit command ⇒
+    hyperbus.commands[TodoListItemsGet].subscribe { implicit command ⇒
       command.reply(Success(
         Ok(todoList)
       ))
       Continue
     },
 
-    hyperbus.commands[TodoListPost].subscribe { implicit command ⇒
+    hyperbus.commands[TodoListItemsPost].subscribe { implicit command ⇒
       counter += 1
       todoList = todoList.copy(
         items = todoList.items :+ TodoItem(counter.toString, command.request.body.title)
