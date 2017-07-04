@@ -24,3 +24,7 @@ annotationTypes:
 /my-todo-list:
   (rewrite):
     uri: hb://todo-service/todo-list
+
+/my-todo-list/{id}:
+  (rewrite):
+    uri: hb://todo-service/todo-list/items/{id}

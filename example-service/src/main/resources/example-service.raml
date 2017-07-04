@@ -9,12 +9,12 @@ types:
     type: object
     properties:
       id: string
-      content: string
+      title: string
 
   NewTodoItem:
     type: object
     properties:
-      content: string
+      title: string
 
   TodoList:
     type: object
@@ -33,5 +33,12 @@ types:
     body:
       type: NewTodoItem
 
-  /{id}:
-    delete:
+/todo-list/items/{id}:
+  uriParameters:
+    id: string
+  delete:
+  get:
+    responses:
+      200:
+        body:
+          TodoItem
