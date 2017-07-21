@@ -1,0 +1,3 @@
+[submodule "api/hyperfacade-api"]
+	path = api/hyperfacade-api
+	url = git@github.com:hypertino/hyperfacade-api.git

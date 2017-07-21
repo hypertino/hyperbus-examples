@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: Facade API
+version: v1
+mediaType: application/json
+baseUri: http://example
+
+uses:
+  facade: hyperfacade-api/facade-lib.raml
+
+/my-todo-list:
+  (facade.rewrite):
+    uri: hb://todo-service/todo-list-items
+
+/my-todo-list/{id}:
+  (facade.rewrite):
+    uri: hb://todo-service/todo-list-items/{id}
