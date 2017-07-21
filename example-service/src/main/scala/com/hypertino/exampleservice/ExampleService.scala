@@ -6,16 +6,13 @@ import com.hypertino.hyperbus.model.{Accepted, Created, EmptyBody, ErrorBody, No
 import com.hypertino.service.control.api.{Console, Service}
 import monix.execution.Ack.Continue
 import monix.execution.Scheduler
-import scaldi.{Injectable, Injector}
 
+import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.util.Success
 
-class ExampleService (console: Console, implicit val injector: Injector) extends Service with Injectable {
+class ExampleService (console: Console, hyperbus: Hyperbus, implicit val scheduler: Scheduler) extends Service {
   console.writeln("ExampleService started!")
-
-  implicit val scheduler = inject[Scheduler]
-  val hyperbus = inject[Hyperbus]
 
   var todoList = TodoList("This is my todo list", List(
     TodoItem("1", "Make exercise"),
@@ -64,9 +61,8 @@ class ExampleService (console: Console, implicit val injector: Injector) extends
     }
   )
 
-  def stopService(controlBreak: Boolean): Unit = {
+  def stopService(controlBreak: Boolean, timeout: FiniteDuration): Future[Unit] = Future {
     handlers.foreach(_.cancel())
-    hyperbus.shutdown(10.seconds).runAsync
     console.writeln("ExampleService stopped.")
   }
 }
