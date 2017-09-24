@@ -22,7 +22,7 @@ lazy val quasiQuotes = "org.scalamacros" %% "quasiquotes" % "2.1.0" cross CrossV
 lazy val macroParadise = compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 
 lazy val hyperbusZMQ = "com.hypertino" %% "hyperbus-t-zeromq" % "0.2-SNAPSHOT"
-lazy val hyperbusKafka = "com.hypertino" %% "hyperbus-t-kafka" % "0.2-SNAPSHOT"
+// lazy val hyperbusKafka = "com.hypertino" %% "hyperbus-t-kafka" % "0.2-SNAPSHOT"
 
 lazy val serviceControl = "com.hypertino"        %% "service-control"             % "0.3-SNAPSHOT"
 lazy val serviceConfig = "com.hypertino"        %% "service-config"              % "0.2-SNAPSHOT"
@@ -33,7 +33,7 @@ lazy val `example-facade` = project in file("example-facade") disablePlugins(Ram
     libraryDependencies ++= Seq(
       hyperFacade,
       hyperbusZMQ,
-      hyperbusKafka,
+//      hyperbusKafka,
       logback
     )
   )

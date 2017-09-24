@@ -7,10 +7,34 @@ baseUri: http://example
 uses:
   facade: hyperfacade-api/facade-lib.raml
 
+types:
+  TodoItem:
+    type: object
+    properties:
+      id: string
+      title: string
+
+#      time:
+#        type: string
+#        (facade.set):
+#          source: 'format_unix_time(unix_time())'
+#          stages: [response]
+#
+#      comment:
+#        type: string
+#        (facade.set):
+#          source: '"Hello " + this.title'
+#          stages: [response]
+
 /my-todo-list:
   (facade.rewrite):
-    uri: hb://todo-service/todo-list-items
+    location: hb://todo-service/todo-list-items
 
 /my-todo-list/{id}:
   (facade.rewrite):
-    uri: hb://todo-service/todo-list-items/{id}
+    location: hb://todo-service/todo-list-items/{id}
+  get:
+    responses:
+      200:
+        body:
+          TodoItem
